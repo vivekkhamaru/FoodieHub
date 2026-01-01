@@ -97,7 +97,7 @@ nav a:hover::after{
 /* ===== HERO SECTION ===== */
 .hero{
   height:70vh;
-  background:linear-gradient(135deg,#e4002b,#ff5f6d);
+  background:line-gradient(135deg,#e4002b,#ff5f6d);
   display:flex;
   align-items:center;
   padding:60px;
@@ -1344,41 +1344,49 @@ body.dark #scrollTopBtn{
 }
 /* 🌈 BODY UPGRADE */
 body{
-  background:linear-gradient(180deg,#fafafa,#f2f2f2);
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:linear-gradient(180deg,#fafafa,#f0f0f0);
 }
 
 /* SECTION DEPTH */
 .section{
-  padding:80px 60px;
+  padding:70px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
-/* SECTION TITLE */
 .section h2{
-  font-size:42px;
-  font-weight:900;
+  font-size:36px;
+  font-weight:800;
+  text-align:center;
   margin-bottom:50px;
   color:#111;
-  text-align:center;
-  letter-spacing:-1px;
 }
-
 /* MENU GRID */
 .menu{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:35px;
+  gap:30px;
 }
 .card{
   background:#fff;
   border-radius:25px;
-  overflow:hidden;
-  transition:0.4s;
-  box-shadow:0 20px 40px rgba(0,0,0,0.08);
+  padding-bottom:20px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.08);
+  transition:0.35s ease;
+  text-align:center;
 }
 
 .card:hover{
-  transform:translateY(-12px);
-  box-shadow:0 30px 60px rgba(0,0,0,0.18);
+  transform:translateY(-10px);
+  box-shadow:0 25px 60px rgba(0,0,0,0.15);
+}
+
+.card h3{
+  font-size:20px;
+  font-weight:700;
+  margin:20px 0 15px;
 }
 
 /* IMAGE */
@@ -1431,6 +1439,79 @@ body.dark .section h2{
 body.dark .card{
   background:#1b1b1b;
 }
+.card button{
+  background:linear-gradient(135deg,#e4002b,#ff3b3b);
+  border:none;
+  color:white;
+  padding:12px 32px;
+  border-radius:40px;
+  font-weight:700;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.card button:hover{
+  box-shadow:0 15px 30px rgba(228,0,43,0.4);
+}
+.divider{
+  height:120px;
+  background:linear-gradient(180deg,transparent,#f0f0f0);
+}
+body.dark{
+  background:#0f0f0f;
+  color:white;
+}
+
+body.dark .card{
+  background:#1b1b1b;
+}
+.offer-strip{
+  display:flex;
+  gap:25px;
+  padding:40px 20px;
+  max-width:1200px;
+  margin:auto;
+  overflow-x:auto;
+}
+
+.offer-card{
+  min-width:260px;
+  padding:25px;
+  border-radius:22px;
+  color:#fff;
+  box-shadow:0 20px 40px rgba(0,0,0,0.15);
+  transition:0.3s;
+  cursor:pointer;
+}
+
+.offer-card:hover{
+  transform:translateY(-8px);
+}
+
+/* COLOR VARIANTS */
+.offer-card.red{
+  background:linear-gradient(135deg,#e4002b,#ff4d4d);
+}
+
+.offer-card.dark{
+  background:linear-gradient(135deg,#111,#333);
+}
+
+.offer-card.gold{
+  background:linear-gradient(135deg,#ff9f00,#ffcc00);
+  color:#111;
+}
+
+.offer-card h3{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:8px;
+}
+
+.offer-card p{
+  font-size:15px;
+  opacity:0.9;
+}
 </style>
 </head>
 
@@ -1454,6 +1535,22 @@ body.dark .card{
     <span class="cart">🛒 Cart (0)</span>
   </div>
 </header>
+    <section class="offer-strip">
+  <div class="offer-card red">
+    <h3>🔥 50% OFF</h3>
+    <p>On first order above ₹199</p>
+  </div>
+
+  <div class="offer-card dark">
+    <h3>🍗 Free Chicken Roll</h3>
+    <p>On orders above ₹499</p>
+  </div>
+
+  <div class="offer-card gold">
+    <h3>⚡ Flat ₹100 OFF</h3>
+    <p>Use code: FOODIE100</p>
+  </div>
+</section>
 <div class="hero">
   <div>
     <h1>Delicious Food Delivered Fast</h1>
@@ -1467,8 +1564,12 @@ body.dark .card{
   >
 </div>
 <section class="section">
-    <h2>BROWSE CATEGORIES</h2>
-<div class="menu">
+  <h2>Popular Categories</h2>
+
+  <div class="menu">
+    <!-- cards here -->
+  </div>
+</section>
 
   <div class="card">
     <img src="https://via.placeholder.com/400x250.png?text=Chicken+Buckets">
@@ -1503,7 +1604,7 @@ body.dark .card{
   </div>
 
 </div>
-   
+   <div class="divider"></div>
     
 </section>
 <div id="cart" class="cart">
