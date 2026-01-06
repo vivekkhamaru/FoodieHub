@@ -1,427 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <title>FoodieHub</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
+/* ================= RESET ================= */
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family: Arial, Helvetica, sans-serif;
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
 body{
-  background:#fafafa;
+  font-family:'Poppins',sans-serif;
+  background:#f6f6f6;
+  color:#111;
 }
 
-/* ===== HEADER ===== */
-header{
-  background:#fff;
-  backdrop-filter: blur(10px);
-  box-shadow:0 8px 30px rgba(0,0,0,0.08);
-}
-  
-
-  <div class="fh-right">
-    <div class="fh-item">📍 Kolkata</div>
-    <div class="fh-item">📦 My Orders</div>
-    <div class="fh-item">👤 Sign In</div>
-    <div class="fh-item fh-cart">🛒 Cart (0)</div>
-  </div>
-</div>
-    
-.top-bar{
-    background:#000;
-    color:#fff;
-    text-align:center;
-    padding:6px;
-    font-size:14px;
-}
-
+/* ================= NAVBAR ================= */
 .navbar{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:15px 40px;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:#fff;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 24px;
+  box-shadow:0 8px 30px rgba(0,0,0,0.08);
 }
 
 .logo{
-    font-size:28px;
-    font-weight:bold;
-    color:#e4002b;
+  font-size:26px;
+  font-weight:800;
+  color:#e4002b;
+}
+    
+.logo span{
+    color:#808080;
+}
+    
+.nav-links{
+  display:flex;
+  gap:24px;
 }
 
-nav a{
-  position:relative;
+.nav-links a{
+  text-decoration:none;
+  font-weight:600;
+  color:#111;
 }
 
-nav a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-5px;
-  width:0;
-  height:3px;
-  background:var(--primary);
-  transition:0.3s;
+.nav-right{
+  display:flex;
+  gap:16px;
+  font-weight:600;
 }
 
-nav a:hover::after{
-  width:100%;
-}
-.right-nav<div class="hamburger" onclick="toggleMenu()">
-  <span></span>
-  <span></span>
-  <span></span>
-</div>{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.order-btn{
-    background:#e4002b;
-    color:#fff;
-    padding:10px 20px;
-    border-radius:25px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* ===== HERO SECTION ===== */
+/* ================= HERO ================= */
 .hero{
-  height:70vh;
-  background:line-gradient(135deg,#e4002b,#ff5f6d);
+  height:80vh;
+  background:
+    linear-gradient(to right,rgba(0,0,0,0.7),rgba(0,0,0,0.3)),
+    url("https://images.unsplash.com/photo-1600891964599-f61ba0e24092") center/cover;
   display:flex;
   align-items:center;
-  padding:60px;
+  padding:40px;
   color:white;
-  border-radius:0 0 40px 40px;
 }
+
 .hero h1{
-  font-size:64px;
-  font-weight:900;
-  line-height:1.1;
+  font-size:52px;
+  font-weight:800;
+  max-width:500px;
 }
 
 .hero button{
-  margin-top:25px;
-  padding:16px 40px;
-  font-size:18px;
-  border-radius:50px;
-  box-shadow:0 10px 25px rgba(228,0,43,0.4);
+  margin-top:20px;
+  padding:14px 34px;
+  border:none;
+  border-radius:40px;
+  background:#e4002b;
+  color:white;
+  font-size:16px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* ================= DEAL TIMER ================= */
+.deal{
+  max-width:1100px;
+  margin:40px auto;
+  background:linear-gradient(135deg,#e4002b,#ff4d4d);
+  color:white;
+  padding:30px;
+  border-radius:26px;
+  text-align:center;
+  box-shadow:0 25px 50px rgba(228,0,43,0.4);
+}
+
+.timer{
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+  gap:20px;
+}
+
+.timer div{
+  background:rgba(255,255,255,0.25);
+  padding:14px 18px;
+  border-radius:18px;
+}
+
+/* ================= WHY US ================= */
+.why-us{
+  max-width:1200px;
+  margin:60px auto;
+  padding:20px;
+  text-align:center;
+}
+
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.why-card{
+  background:white;
+  padding:30px 20px;
+  border-radius:26px;
+  box-shadow:0 15px 30px rgba(0,0,0,0.1);
   transition:0.3s;
 }
 
-.hero button:hover{
-  transform:translateY(-3px);
+.why-card:hover{
+  transform:translateY(-10px);
 }
 
-/* ==== SECTION ===== */
+/* ================= MENU ================= */
 .section{
-    padding:50px;
+  max-width:1200px;
+  margin:60px auto;
+  padding:20px;
 }
 
-.section h2{
-    font-size:30px;
-    margin-bottom:30px;
+.Browse Categories{
+  align-items:center;
+  text-align:center;
+  justify-content:center;
 }
-
+  
 .menu{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:25px;
-}
-.cart-btn{
-    cursor:pointer;
-    font-weight:bold;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:30px;
 }
 
-.cart{
-    position:fixed;
-    top:0;
-    right:-400px;
-    width:350px;
-    height:100%;
-    background:#fff;
-    box-shadow:-5px 0 15px rgba(0,0,0,0.2);
-    padding:20px;
-    transition:0.3s;
-    z-index:2000;
-}
-
-.cart h2{
-    margin-bottom:20px;
-}
-
-.cart button{
-    background:#e4002b;
-    color:#fff;
-    border:none;
-    padding:10px;
-    width:100%;
-    border-radius:20px;
-    cursor:pointer;
-}
 .card{
-  border-radius:20px;
+  background:white;
+  border-radius:24px;
   overflow:hidden;
-  transition:0.4s;
-  cursor:pointer;
+  box-shadow:0 15px 35px rgba(0,0,0,0.1);
+  transition:0.3s;
 }
 
 .card:hover{
   transform:translateY(-10px);
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
 }
 
 .card img{
-  transition:0.5s;
+  width:100%;
+  height:200px;
+  object-fit:cover;
 }
 
-.card:hover img{
-  transform:scale(1.1);
-}
-button{
-  background:linear-gradient(135deg,#e4002b,#ff2f55);
-  border:none;
-  color:white;
-  font-weight:bold;
-  letter-spacing:0.5px;
-}button:hover{
-  box-shadow:0 15px 30px rgba(228,0,43,0.4);
-}
 .card-body{
-    padding:15px;
+  padding:18px;
+  text-align:center;
 }
 
-.card-body h3{
-    margin-bottom:10px;
+.card button{
+  margin-top:10px;
+  padding:10px 26px;
+  border:none;
+  border-radius:30px;
+  background:#e4002b;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
 }
 
-.card-body button{
-    margin-top:10px;
-    background:#000;
-    color:#fff;
-    border:none;
-    padding:10px;
-    width:100%;
-    border-radius:20px;
-    cursor:pointer;
-}
-.checkout{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:400px;
-    background:#fff;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    display:none;
-    z-index:3000;
-}
-
-.checkout input{
-    width:100%;
-    margin:10px 0;
-    padding:12px;
-    border-radius:10px;
-    border:1px solid #ccc;
-}
-
-.checkout button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:25px;
-    font-size:16px;
-    background:#e4002b;
-    color:#fff;
-    cursor:pointer;
-}
-
-.checkout .cancel{
-    background:#000;
-}
-  .tracking{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:450px;
-    background:#fff;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    display:none;
-    text-align:center;
-    z-index:4000;
-}
-
-.steps{
-    margin:30px 0;
-}
-
-.step{
-    padding:12px;
-    margin:10px 0;
-    border-radius:20px;
-    background:#ddd;
-    font-weight:bold;
-}
-
-.step.active{
-    background:#e4002b;
-    color:#fff;
-}
-
-.tracking button{
-    padding:12px 25px;
-    border:none;
-    border-radius:25px;
-    background:#000;
-    color:#fff;
-    cursor:pointer;
-}
-  .payment{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:420px;
-    background:#fff;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    display:none;
-    z-index:5000;
-}
-
-.pay-option{
-    background:#f2f2f2;
-    padding:12px;
-    margin:10px 0;
-    border-radius:15px;
-    cursor:pointer;
-    font-weight:bold;
-}
-
-.pay-option.active{
-    background:#e4002b;
-    color:#fff;
-}
-
-.payment input{
-    width:100%;
-    padding:10px;
-    margin:6px 0;
-    border-radius:10px;
-    border:1px solid #ccc;
-}
-
-.payment button{
-    width:100%;
-    padding:12px;
-    margin-top:10px;
-    border:none;
-    border-radius:25px;
-    background:#e4002b;
-    color:#fff;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.payment .cancel{
-    background:#000;
-}
-  .auth{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:350px;
-    background:#fff;
-    padding:30px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    display:none;
-    text-align:center;
-    z-index:6000;
-}
-
-.auth input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:10px;
-    border:1px solid #ccc;
-}
-
-.auth button{
-    width:100%;
-    padding:12px;
-    border:none;
-    border-radius:25px;
-    background:#e4002b;
-    color:#fff;
-    font-size:16px;
-    cursor:pointer;
-}
-
-.auth span{
-    color:#e4002b;
-    cursor:pointer;
-    font-weight:bold;
-}
-  .orders{
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    width:90%;
-    max-width:450px;
-    background:#fff;
-    padding:25px;
-    border-radius:20px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    display:none;
-    z-index:7000;
-}
-
-.orders button{
-    margin-top:15px;
-    width:100%;
-    padding:10px;
-    border:none;
-    border-radius:20px;
-    background:#000;
-    color:#fff;
-    cursor:pointer;
-}
-/* ===== FOOTER ===== */
+/* ================= FOOTER ================= */
 footer{
-  background:#121212;
-  color:#bbb;
-  padding:50px 20px;
+  background:#111;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
 }
 
-footer h3{
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .nav-links{
+    display:none;
+  }
+
+  .hero h1{
+    font-size:38px;
+  }
+}
+    .auth-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.auth-box{
+  background:white;
+  padding:30px;
+  border-radius:24px;
+  width:90%;
+  max-width:320px;
+  text-align:center;
+}
+
+.auth-box input{
+  width:100%;
+  padding:12px;
+  margin:10px 0;
+  border-radius:10px;
+  border:1px solid #ccc;
+}
+
+.auth-box button{
+  width:100%;
+  padding:12px;
+  background:#e4002b;
+  color:white;
+  border:none;
+  border-radius:30px;
+  font-weight:700;
+}
+
+.auth-box p{
+  margin-top:12px;
+  color:#e4002b;
+  cursor:pointer;
+}
+    body.dark{
+  background:#0f0f0f;
   color:white;
 }
-    @keyframes fadeUp{
+
+body.dark .navbar,
+body.dark .card,
+body.dark .why-card,
+body.dark .auth-box{
+  background:#1b1b1b;
+  color:white;
+}
+    /* ================= ORDER TRACKING ================= */
+.track-box{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.6);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:9999;
+}
+
+.track-card{
+  background:#fff;
+  width:90%;
+  max-width:380px;
+  padding:30px 25px;
+  border-radius:30px;
+  box-shadow:0 30px 60px rgba(0,0,0,0.3);
+  text-align:center;
+  animation:fadeUp 0.4s ease;
+}
+
+.track-card h2{
+  font-size:24px;
+  margin-bottom:20px;
+  font-weight:800;
+}
+
+/* TRACK STEPS */
+.track-steps{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+
+.track-step{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:#f4f4f4;
+  padding:14px 18px;
+  border-radius:18px;
+  font-weight:600;
+}
+
+/* ACTIVE STEP */
+.track-step.active{
+  background:linear-gradient(135deg,#e4002b,#ff4d4d);
+  color:white;
+  box-shadow:0 10px 25px rgba(228,0,43,0.4);
+}
+
+/* ICON */
+.track-icon{
+  font-size:22px;
+}
+
+/* CLOSE BUTTON */
+.track-card button{
+  margin-top:22px;
+  padding:12px 30px;
+  border:none;
+  border-radius:40px;
+  background:#111;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+/* DARK MODE */
+body.dark .track-card{
+  background:#1b1b1b;
+  color:white;
+}
+
+body.dark .track-step{
+  background:#2a2a2a;
+}
+
+/* ANIMATION */
+@keyframes fadeUp{
   from{
     opacity:0;
     transform:translateY(30px);
@@ -431,788 +359,12 @@ footer h3{
     transform:translateY(0);
   }
 }
-
-.section{
-  animation:fadeUp 1s ease;
-}
-    /* 🌙 DARK MODE SYSTEM */
-body{
-  transition: background 0.4s, color 0.4s;
-}
-
-/* Toggle button */
-.theme-toggle{
-  cursor:pointer;
-  font-size:20px;
-}
-
-/* DARK THEME */
-body.dark{
-  background:#0f0f0f;
-  color:#eee;
-}
-
-body.dark header{
-  background:#121212;
-  box-shadow:none;
-}
-
-body.dark nav a{
-  color:#eee;
-}
-
-body.dark nav a::after{
-  background:#e4002b;
-}
-
-body.dark .section{
-  background:#0f0f0f;
-}
-
-body.dark .card{
-  background:#1b1b1b;
-  box-shadow:0 10px 30px rgba(0,0,0,0.8);
-}
-
-body.dark .card-body h3{
-  color:#fff;
-}
-
-body.dark .top-bar{
-  background:#000;
-}
-
-body.dark footer{
-  background:#000;
-  color:#aaa;
-}
-
-body.dark .cart,
-body.dark .checkout,
-body.dark .payment,
-body.dark .tracking,
-body.dark .orders,
-body.dark .auth{
-  background:#1b1b1b;
-  color:#fff;
-}
-
-/* Inputs */
-body.dark input{
-  background:#222;
-  color:#fff;
-  border:1px solid #333;
-}
-
-/* Buttons stay red (brand power) */
-body.dark button{
-  box-shadow:0 10px 25px rgba(228,0,43,0.4);
-}
-    /* 🌗 THEME SWITCH */
-.theme-switch{
-  width:70px;
-  height:34px;
-  background:#eaeaea;
-  border-radius:50px;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  padding:4px;
-  transition:0.4s;
-}
-
-.switch{
-  width:26px;
-  height:26px;
-  background:white;
-  border-radius:50%;
-  position:relative;
-  transform:translateX(0);
-  transition:0.4s;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
-}
-
-.sun{opacity:1;}
-.moon{opacity:0; position:absolute;}
-
-/* DARK MODE SWITCH */
-body.dark .theme-switch{
-  background:#333;
-}
-
-body.dark .switch{
-  transform:translateX(36px);
-}
-
-body.dark .sun{
-  opacity:0;
-}
-
-body.dark .moon{
-  opacity:1;
-}
-    /* 🔤 GLOBAL FONT SYSTEM */
-body{
-  font-family:'Inter', sans-serif;
-  font-size:16px;
-  letter-spacing:0.2px;
-}
-
-/* HEADINGS */
-h1,h2,h3,h4{
-  font-family:'Poppins', sans-serif;
-  letter-spacing:-0.5px;
-}
-
-/* HERO TITLE */
-.hero h1{
-  font-size:64px;
-  font-weight:900;
-}
-
-/* SECTION TITLES */
-.section-title{
-  font-size:42px;
-  font-weight:800;
-  margin-bottom:30px;
-}
-
-/* CARD TITLES */
-.card h3{
-  font-size:20px;
-  font-weight:700;
-}
-
-/* BUTTON TEXT */
-button{
-  font-family:'Poppins', sans-serif;
-  font-weight:700;
-  letter-spacing:0.6px;
-}body.dark{
-  font-weight:400;
-}
-
-body.dark h1,
-body.dark h2,
-body.dark h3{
-  color:#fff;
-}
-    /* 🔥 PREMIUM NAVBAR */
-.navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:16px 50px;
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(12px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-/* LOGO */
-.logo{
-  font-family:'Poppins', sans-serif;
-  font-size:26px;
-  font-weight:900;
-  color:#e4002b;
-}
-
-/* LINKS */
-.nav-links{
-  display:flex;
-  gap:35px;
-}
-
-.nav-links a{
-  position:relative;
-  font-weight:600;
-  color:#222;
-  text-decoration:none;
-  padding:6px 0;
-}
-
-/* UNDERLINE ANIMATION */
-.nav-links a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:3px;
-  background:#e4002b;
-  transition:0.3s;
-}
-
-.nav-links a:hover::after{
-  width:100%;
-}
-
-/* RIGHT SIDE */
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:20px;
-}
-
-/* ORDER BUTTON */
-.order-btn{
-  padding:12px 28px;
-  border-radius:50px;
-  font-weight:700;
-  background:linear-gradient(135deg,#e4002b,#ff2f55);
-  color:white;
-  box-shadow:0 10px 25px rgba(228,0,43,0.4);
-  transition:0.3s;
-}
-
-.order-btn:hover{
-  transform:translateY(-3px);
-}
-
-/* 🌙 DARK MODE */
-body.dark .navbar{
-  background:rgba(18,18,18,0.9);
-  box-shadow:none;
-}
-
-body.dark .nav-links a{
-  color:#eee;
-}
-    /* 🍔 HAMBURGER */
-.hamburger{
-  display:none;
-  flex-direction:column;
-  gap:6px;
-  cursor:pointer;
-}
-
-.hamburger span{
-  width:26px;
-  height:3px;
-  background:#222;
-  transition:0.4s;
-}
-
-/* Animation */
-.hamburger.active span:nth-child(1){
-  transform:rotate(45deg) translate(5px,6px);
-}
-
-.hamburger.active span:nth-child(2){
-  opacity:0;
-}
-
-.hamburger.active span:nth-child(3){
-  transform:rotate(-45deg) translate(6px,-6px);
-}
-
-/* Dark mode */
-body.dark .hamburger span{
-  background:#fff;
-}
-    @media(max-width:900px){
-  .nav-links{
-    position:absolute;
-    top:80px;
-    left:0;
-    width:100%;
-    background:#fff;
-    flex-direction:column;
-    align-items:center;
-    gap:25px;
-    padding:40px 0;
-    transform:translateY(-120%);
-    transition:0.4s;
-  }
-
-  .nav-links.show{
-    transform:translateY(0);
-  }
-
-  .hamburger{
-    display:flex;
-  }
-
-  body.dark .nav-links{
-    background:#121212;
-  }
-}
-    /* 🧩 MEGA MENU */
-.mega-wrapper{
-  position:relative;
-}
-
-.mega-menu{
-  position:absolute;
-  top:40px;
-  left:0;
-  width:600px;
-  background:#fff;
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  padding:30px;
-  gap:25px;
-  border-radius:20px;
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
-  opacity:0;
-  pointer-events:none;
-  transform:translateY(10px);
-  transition:0.3s;
-}
-
-/* Show on hover */
-.mega-wrapper:hover .mega-menu{
-  opacity:1;
-  pointer-events:auto;
-  transform:translateY(0);
-}
-
-/* Column */
-.mega-column h4{
-  color:#e4002b;
-  font-weight:800;
-  margin-bottom:10px;
-}
-
-.mega-column a{
-  display:block;
-  padding:6px 0;
-  color:#333;
-  font-weight:500;
-}
-
-/* Dark mode */
-body.dark .mega-menu{
-  background:#1b1b1b;
-}
-
-body.dark .mega-column a{
-  color:#eee;
-}
-    /* 🔥 PRO NAVBAR */
-.navbar-pro{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:#fff;
-  box-shadow:0 20px 50px rgba(0,0,0,0.12);
-}
-
-/* RED STRIPE */
-.nav-accent{
-  height:5px;
-  background:linear-gradient(90deg,#e4002b,#ff4d6d);
-}
-
-/* INNER */
-.nav-inner{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:22px 60px;
-}
-
-/* LOGO */
-.logo{
-  font-size:28px;
-  font-weight:900;
-  color:#e4002b;
-  letter-spacing:1px;
-}
-
-/* LINKS */
-.nav-links{
-  display:flex;
-  gap:40px;
-}
-
-.nav-links a{
-  position:relative;
-  font-weight:700;
-  color:#222;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-/* ACTIVE INDICATOR */
-.nav-links a::after{
-  content:'';
-  position:absolute;
-  left:50%;
-  bottom:-14px;
-  width:0;
-  height:4px;
-  background:#e4002b;
-  border-radius:5px;
-  transition:0.4s;
-  transform:translateX(-50%);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after{
-  width:30px;
-}
-
-/* CTA */
-.order-btn{
-  padding:14px 36px;
-  border-radius:50px;
-  font-weight:800;
-  font-size:15px;
-  letter-spacing:1px;
-}
-
-/* GLOW EFFECT */
-.glow{
-  box-shadow:0 0 20px rgba(228,0,43,0.6);
-  animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-  0%{box-shadow:0 0 15px rgba(228,0,43,0.4);}
-  50%{box-shadow:0 0 30px rgba(228,0,43,0.8);}
-  100%{box-shadow:0 0 15px rgba(228,0,43,0.4);}
-}
-
-/* 🌙 DARK MODE */
-body.dark .navbar-pro{
-  background:#0f0f0f;
-}
-
-body.dark .nav-links a{
-  color:#fff;
-}
-    .navbar-pro.scrolled{
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-}
-    /* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-/* NAVBAR */
-.navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:16px 50px;
-  background:#fff;
-  box-shadow:0 8px 30px rgba(0,0,0,0.08);
-  font-family:'Poppins', sans-serif;
-}
-
-/* LEFT SIDE */
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:50px;
-}
-
-/* LOGO */
-.logo{
-  font-size:28px;
-  font-weight:900;
-  color:#e4002b;
-}
-
-.logo span{
-  color:#111;
-}
-
-/* NAV LINKS */
-.nav-links{
-  display:flex;
-  gap:30px;
-}
-
-.nav-links a{
-  text-decoration:none;
-  color:#222;
-  font-weight:600;
-  position:relative;
-}
-
-.nav-links a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:3px;
-  background:#e4002b;
-  transition:.3s;
-}
-
-.nav-links a:hover::after{
-  width:100%;
-}
-
-/* RIGHT SIDE */
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:28px;
-}
-
-/* ICON ITEMS */
-.nav-item{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  font-size:15px;
-  font-weight:500;
-  color:#222;
-  cursor:pointer;
-}
-
-/* CART */
-.cart{
-  font-weight:700;
-}body.dark .navbar{
-  background:#0f0f0f;
-}
-
-body.dark .nav-links a,
-body.dark .nav-item{
-  color:#fff;
-}
-
-body.dark .logo span{
-  color:#fff;
-}
-    .navbar-test{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  padding:20px 50px !important;
-  background:#fff !important;
-  border-bottom:4px solid red !important;
-  font-family:Arial, sans-serif !important;
-}
-
-.logo-test{
-  font-size:28px !important;
-  font-weight:900 !important;
-  color:red !important;
-}
-
-.links-test{
-  display:flex !important;
-  gap:30px !important;
-}
-
-.links-test a{
-  font-weight:bold !important;
-  cursor:pointer !important;
-}
-
-.right-test{
-  display:flex !important;
-  gap:20px !important;
-}
-    /* ===== FORCE NAVBAR RESET ===== */
-.fh-navbar *{
-  all:unset !important;
-  box-sizing:border-box !important;
-}
-
-/* ===== NAVBAR ===== */
-.fh-navbar{
-  display:flex !important;
-  justify-content:space-between !important;
-  align-items:center !important;
-  padding:18px 60px !important;
-  background:#ffffff !important;
-  border-bottom:3px solid #e4002b !important;
-  font-family:Poppins, Arial, sans-serif !important;
-}
-
-/* LEFT */
-.fh-left{
-  display:flex !important;
-  align-items:center !important;
-  gap:50px !important;
-}
-
-/* LOGO */
-.fh-logo{
-  font-size:30px !important;
-  font-weight:900 !important;
-  color:#e4002b !important;
-}
-
-.fh-logo span{
-  color:#111 !important;
-}
-
-/* LINKS */
-.fh-links{
-  display:flex !important;
-  gap:35px !important;
-}
-
-.fh-links div{
-  font-size:15px !important;
-  font-weight:600 !important;
-  cursor:pointer !important;
-  position:relative !important;
-}
-
-/* underline */
-.fh-links div::after{
-  content:"" !important;
-  position:absolute !important;
-  left:0 !important;
-  bottom:-6px !important;
-  width:0 !important;
-  height:3px !important;
-  background:#e4002b !important;
-  transition:0.3s !important;
-}
-
-.fh-links div:hover::after{
-  width:100% !important;
-}
-
-/* RIGHT */
-.fh-right{
-  display:flex !important;
-  align-items:center !important;
-  gap:28px !important;
-}
-
-/* ITEMS */
-.fh-item{
-  font-size:14px !important;
-  font-weight:500 !important;
-  cursor:pointer !important;
-}
-
-/* CART */
-.fh-cart{
-  font-weight:700 !important;
-}
-/* ===== CLEAN NAVBAR ===== */
-.main-navbar{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:22px 60px;              /* thicker */
-  background:#ffffff;
-  box-shadow:0 10px 40px rgba(0,0,0,0.12);
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
-
-.nav-left{
-  display:flex;
-  align-items:center;
-  gap:40px;
-}
-
-.logo{
-  font-size:32px;
-  font-weight:900;
-  letter-spacing:0.5px;
-  color:#e4002b;
-}
-
-.logo span{
-  color:#111;
-}
-
-.nav-links{
-  display:flex;
-  gap:28px;
-}
-.nav-links a{
-  text-decoration:none;
-  font-weight:700;
-  font-size:15px;
-  color:#222;
-  position:relative;
-  padding:8px 2px;
-}.nav-links a::after{
-  height:4px;
-}
-
-.nav-links a::after{
-  content:'';
-  position:absolute;
-  left:0;
-  bottom:-6px;
-  width:0;
-  height:3px;
-  background:#e4002b;
-  transition:0.3s;
-}
-
-.nav-links a:hover::after{
-  width:100%;
-}
-.nav-right{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
-
-.nav-right span{
-  display:flex;
-  align-items:center;
-  gap:6px;
-  padding:8px 14px;
-  border-radius:999px;
-  font-weight:600;
-  font-size:14px;
-  background:#f5f5f5;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.nav-right span:hover{
-  background:#e4002b;
-  color:#fff;
-}
-.cart{
-  background:#e4002b !important;
-  color:#fff !important;
-  font-weight:800;
-  box-shadow:0 8px 20px rgba(228,0,43,0.4);
-}
-body.dark .nav-links a,
-body.dark .nav-right span{
-  color:#fff;
-}
-
-body.dark .logo span{
-  color:#fff;
-}
-body.dark .main-navbar{
-  background:#0f0f0f;
-}
-
-body.dark .nav-links a,
-body.dark .nav-right span{
-  color:#fff;
-}
-
-body.dark .nav-right span{
-  background:#1e1e1e;
-}
-/* ===== FOOTER ===== */
-.fh-footer{
+    /* ================= FOOTER ================= */
+.site-footer{
   background:#111;
-  color:#bbb;
-  padding:70px 40px 30px;
-  font-family:'Inter', sans-serif;
+  color:#ccc;
+  padding:60px 20px 0;
+  margin-top:80px;
 }
 
 .footer-container{
@@ -1220,14 +372,23 @@ body.dark .nav-right span{
   margin:auto;
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:50px;
+  gap:40px;
 }
 
-/* LOGO */
+.footer-col h3{
+  color:#fff;
+  margin-bottom:15px;
+  font-size:18px;
+}
+
+.footer-col p{
+  font-size:14px;
+  line-height:1.6;
+}
+
 .footer-logo{
-  font-family:'Poppins', sans-serif;
-  font-size:32px;
-  font-weight:900;
+  font-size:26px;
+  font-weight:800;
   color:#e4002b;
 }
 
@@ -1235,734 +396,305 @@ body.dark .nav-right span{
   color:#fff;
 }
 
-.footer-col p{
-  margin-top:15px;
-  line-height:1.6;
-  font-size:14px;
-}
-
-/* HEADINGS */
-.footer-col h4{
-  color:#fff;
-  margin-bottom:18px;
-  font-size:16px;
-  text-transform:uppercase;
-  letter-spacing:1px;
-}
-
-/* LINKS */
 .footer-col ul{
   list-style:none;
 }
 
 .footer-col ul li{
-  margin-bottom:12px;
+  margin-bottom:10px;
+  font-size:14px;
 }
 
 .footer-col ul li a{
-  color:#bbb;
   text-decoration:none;
-  font-size:14px;
+  color:#ccc;
   transition:0.3s;
 }
 
 .footer-col ul li a:hover{
   color:#e4002b;
-  padding-left:6px;
 }
 
 /* SOCIAL ICONS */
 .social-icons{
   display:flex;
+    justify-content:center;
+    align-items:center;
   gap:15px;
-  margin-top:10px;
 }
 
-.social-icons span{
+.social-icons a{
   width:42px;
   height:42px;
-  background:#1c1c1c;
   display:flex;
   align-items:center;
   justify-content:center;
   border-radius:50%;
-  cursor:pointer;
-  transition:0.3s;
+  background:#1f1f1f;
+  color:white;
   font-size:18px;
+  transition:0.3s;
+  text-decoration:none;
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  background:#1e1e1e;
+  color:#fff;
+  font-size:18px;
+  transition:all 0.35s ease;
 }
 
-.social-icons span:hover{
+.social-icons a:hover{
   background:#e4002b;
   transform:translateY(-5px);
-}
-
-/* FOOTER BOTTOM */
-.footer-bottom{
-  text-align:center;
-  margin-top:50px;
-  padding-top:20px;
-  border-top:1px solid #222;
-  font-size:13px;
-  color:#777;
-}
-
-/* DARK MODE SUPPORT */
-body.dark .fh-footer{
-  background:#000;
-}
-
-body.dark .footer-col ul li a{
-  color:#aaa;
-}
-/* 🔝 SCROLL TO TOP BUTTON */
-#scrollTopBtn{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  width:50px;
-  height:50px;
-  border-radius:50%;
+  box-shadow:0 0 15px rgba(228,0,43,0.7);
+  transform:translateY(-6px) scale(1.08);
   background:#e4002b;
-  color:#fff;
-  font-size:22px;
-  border:none;
-  cursor:pointer;
-  display:none;
-  z-index:9999;
-  box-shadow:0 10px 25px rgba(228,0,43,0.5);
-  transition:0.3s;
+  box-shadow:0 10px 25px rgba(228,0,43,0.6);
+}
+    body{
+  animation: pageFade 0.8s ease-in-out;
 }
 
-#scrollTopBtn:hover{
-  transform:translateY(-6px);
-  background:#ff2f55;
+@keyframes pageFade{
+  from{
+    opacity:0;
+    transform:translateY(10px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+    .reveal{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
 }
 
-/* 🌙 DARK MODE */
-body.dark #scrollTopBtn{
-  background:#e4002b;
-}
-/* 🌈 BODY UPGRADE */
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  background:linear-gradient(180deg,#fafafa,#f0f0f0);
-}
-
-/* SECTION DEPTH */
-.section{
-  padding:70px 20px;
-  max-width:1200px;
-  margin:auto;
-}
-
-.section h2{
-  font-size:36px;
-  font-weight:800;
-  text-align:center;
-  margin-bottom:50px;
-  color:#111;
-}
-/* MENU GRID */
-.menu{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-.card{
-  background:#fff;
-  border-radius:25px;
-  padding-bottom:20px;
-  box-shadow:0 15px 40px rgba(0,0,0,0.08);
-  transition:0.35s ease;
-  text-align:center;
-}
-
-.card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 25px 60px rgba(0,0,0,0.15);
-}
-
-.card h3{
-  font-size:20px;
-  font-weight:700;
-  margin:20px 0 15px;
-}
-
-/* IMAGE */
-.card img{
-  width:100%;
-  height:220px;
-  object-fit:cover;
-  transition:0.5s;
-}
-
-.card:hover img{
-  transform:scale(1.1);
-}
-
-/* CARD BODY */
-.card-body{
-  padding:25px;
-  text-align:center;
-}
-
-.card-body h3{
-  font-size:20px;
-  font-weight:800;
-  margin-bottom:15px;
-}
-
-/* BUTTON */
-.card-body button{
-  padding:12px 28px;
-  border-radius:50px;
-  background:linear-gradient(135deg,#e4002b,#ff2f55);
-  color:#fff;
-  font-weight:700;
-  border:none;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.card-body button:hover{
-  box-shadow:0 15px 30px rgba(228,0,43,0.4);
-}
-body.dark{
-  background:linear-gradient(180deg,#0f0f0f,#000);
-}
-
-body.dark .section h2{
-  color:#fff;
-}
-
-body.dark .card{
-  background:#1b1b1b;
-}
-.card button{
-  background:linear-gradient(135deg,#e4002b,#ff3b3b);
-  border:none;
-  color:white;
-  padding:12px 32px;
-  border-radius:40px;
-  font-weight:700;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.card button:hover{
-  box-shadow:0 15px 30px rgba(228,0,43,0.4);
-}
-.divider{
-  height:120px;
-  background:linear-gradient(180deg,transparent,#f0f0f0);
-}
-body.dark{
-  background:#0f0f0f;
-  color:white;
-}
-
-body.dark .card{
-  background:#1b1b1b;
-}
-.offer-strip{
-  display:flex;
-  gap:25px;
-  padding:40px 20px;
-  max-width:1200px;
-  margin:auto;
-  overflow-x:auto;
-}
-
-.offer-card{
-  min-width:260px;
-  padding:25px;
-  border-radius:22px;
-  color:#fff;
-  box-shadow:0 20px 40px rgba(0,0,0,0.15);
-  transition:0.3s;
-  cursor:pointer;
-}
-
-.offer-card:hover{
-  transform:translateY(-8px);
-}
-
-/* COLOR VARIANTS */
-.offer-card.red{
-  background:linear-gradient(135deg,#e4002b,#ff4d4d);
-}
-
-.offer-card.dark{
-  background:linear-gradient(135deg,#111,#333);
-}
-
-.offer-card.gold{
-  background:linear-gradient(135deg,#ff9f00,#ffcc00);
-  color:#111;
-}
-
-.offer-card h3{
-  font-size:22px;
-  font-weight:800;
-  margin-bottom:8px;
-}
-
-.offer-card p{
-  font-size:15px;
-  opacity:0.9;
+.reveal.active{
+  opacity:1;
+  transform:translateY(0);
 }
 </style>
 </head>
 
 <body>
-<header class="main-navbar">
-  <div class="nav-left">
-    <div class="logo">Foodie<span>Hub</span></div>
 
-    <nav class="nav-links">
-      <a href="#">Menu</a>
-      <a href="#">Deals</a>
-      <a href="#">Buckets</a>
-      <a href="#">Stores</a>
-    </nav>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="logo">Foodie<span>Hub</span></div>
+  <div class="nav-links">
+    <a href="#">Menu</a>
+    <a href="#">Deals</a>
+    <a href="#">Stores</a>
   </div>
-
-  <div class="nav-right">
-    <span>📍 Kolkata</span>
-    <span>📦 My Orders</span>
-    <span>👤 Sign In</span>
-    <span class="cart">🛒 Cart (0)</span>
-  </div>
-</header>
-    <section class="offer-strip">
-  <div class="offer-card red">
-    <h3>🔥 50% OFF</h3>
-    <p>On first order above ₹199</p>
-  </div>
-
-  <div class="offer-card dark">
-    <h3>🍗 Free Chicken Roll</h3>
-    <p>On orders above ₹499</p>
-  </div>
-
-  <div class="offer-card gold">
-    <h3>⚡ Flat ₹100 OFF</h3>
-    <p>Use code: FOODIE100</p>
-  </div>
-</section>
-<div class="hero">
-  <div>
-    <h1>Delicious Food Delivered Fast</h1>
-    <p>Order your favourite meals from FoodieHub</p>
-    <button>Order Now</button>
-  </div>
-
-  <img
-    src="https://via.placeholder.com/500x350.png?text=Food+Banner"
-    style="max-width:45%;border-radius:25px;"
-  >
-</div>
-<section class="section">
-  <h2>Popular Categories</h2>
-
-  <div class="menu">
-    <!-- cards here -->
-  </div>
-</section>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/400x250.png?text=Chicken+Buckets">
-    <div class="card-body">
-      <h3>Chicken Buckets</h3>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-    <img src="https://via.placeholder.com/400x250.png?text=Burgers">
-    <div class="card-body">
-      <h3>Burgers</h3>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-      <img src="https://via.placeholder.com/400x250.png?text=Snacks">
-    <div class="card-body">
-      <h3>Snacks</h3>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-
-  <div class="card">
-   <img src="https://via.placeholder.com/400x250.png?text=Beverages">
-    <div class="card-body">
-      <h3>Beverages</h3>
-      <button>Add to Cart</button>
-    </div>
-  </div>
-
-</div>
-   <div class="divider"></div>
-    
-</section>
-<div id="cart" class="cart">
-    <h2>Your Cart</h2>
-    <div id="cart-items"></div>
-    <h3>Total: ₹<span id="total">0</span></h3>
-    <button onclick="goCheckout()">Checkout</button>
-<button onclick="closeCart()">Close</button>
-</div><script>
-let cart = [];
-let total = 0;
-
-function addToCart(item, price){
-    cart.push({item, price});
-    total += price;
-    document.getElementById("cart-count").innerText = cart.length;
-    renderCart();
-}
-
-function renderCart(){
-    let cartItems = document.getElementById("cart-items");
-    cartItems.innerHTML = "";
-    cart.forEach(c => {
-        cartItems.innerHTML += `<p>${c.item} - ₹${c.price}</p>`;
-    });
-    document.getElementById("total").innerText = total;
-}
-
-function openCart(){
-    document.getElementById("cart").style.right = "0";
-}
-
-function closeCart(){
-    document.getElementById("cart").style.right = "-400px";
-}
-  function goCheckout(){
-    if(cart.length === 0){
-        alert("Your cart is empty!");
-        return;
-    }
-
-    document.getElementById("cart").style.right = "-400px";
-    document.getElementById("checkout").style.display = "block";
-
-    let items = document.getElementById("checkout-items");
-    items.innerHTML = "";
-    cart.forEach(c => {
-        items.innerHTML += `<p>${c.item} - ₹${c.price}</p>`;
-    });
-
-    document.getElementById("checkout-total").innerText = total;
-}
-
-function goCheckout(){
-    if(cart.length === 0){
-        alert("Your cart is empty!");
-        return;
-    }
-
-    document.getElementById("checkout").style.display = "none";
-    document.getElementById("payment").style.display = "block";
-}
-
-function placeOrder(){
-    if(!user){
-        alert("Please login first!");
-        openLogin();
-        return;
-    }
-
-    let orders = JSON.parse(localStorage.getItem("orders")) || {};
-
-    if(!orders[user.username]){
-        orders[user.username] = [];
-    }
-
-    orders[user.username].push({
-        items: cart,
-        total: total,
-        date: new Date().toLocaleString()
-    });
-
-    localStorage.setItem("orders", JSON.stringify(orders));
-
-    document.getElementById("payment").style.display = "none";
-    document.getElementById("tracking").style.display = "block";
-
-    cart = [];
-    total = 0;
-    document.getElementById("cart-count").innerText = 0;
-}
-  function goHome(){
-    document.getElementById("tracking").style.display = "none";
-}
-  let selectedPay = "";
-
-function selectPay(el){
-    document.querySelectorAll(".pay-option").forEach(p => p.classList.remove("active"));
-    el.classList.add("active");
-    selectedPay = el.innerText;
-}
-
-function payNow(){
-    if(selectedPay === ""){
-        alert("Please select a payment method");
-        return;
-    }
-
-    document.getElementById("payment").style.display = "none";
-    placeOrder();
-}
-
-function closePayment(){
-    document.getElementById("payment").style.display = "none";
-}
-  let user = null;
-
-function openLogin(){
-    document.getElementById("signup").style.display = "none";
-    document.getElementById("login").style.display = "block";
-}
-
-function openSignup(){
-    document.getElementById("login").style.display = "none";
-    document.getElementById("signup").style.display = "block";
-}
-
-function signup(){
-    let username = document.getElementById("signup-username").value;
-    let password = document.getElementById("signup-password").value;
-
-    if(username === "" || password === ""){
-        alert("Fill all fields");
-        return;
-    }
-
-    localStorage.setItem("user", JSON.stringify({username, password}));
-    alert("Account created! Please login.");
-    openLogin();
-}
-
-function login(){
-    let username = document.getElementById("login-username").value;
-    let password = document.getElementById("login-password").value;
-    let savedUser = JSON.parse(localStorage.getItem("user"));
-
-    if(!savedUser || savedUser.username !== username || savedUser.password !== password){
-        alert("Invalid credentials");
-        return;
-    }
-
-    user = savedUser;
-    document.getElementById("user-name").innerText = user.username;
-    document.getElementById("login").style.display = "none";
-}
-  function openOrders(){
-    if(!user){
-        alert("Please login to view orders");
-        openLogin();
-        return;
-    }
-
-    let orders = JSON.parse(localStorage.getItem("orders")) || {};
-    let list = document.getElementById("order-list");
-    list.innerHTML = "";
-
-    if(!orders[user.username] || orders[user.username].length === 0){
-        list.innerHTML = "<p>No orders yet.</p>";
-    } else {
-        orders[user.username].forEach((o, i) => {
-            list.innerHTML += `
-                <div style="margin-bottom:15px;">
-                    <b>Order ${i+1}</b><br>
-                    ${o.items.map(it => it.item).join(", ")}<br>
-                    ₹${o.total}<br>
-                    <small>${o.date}</small>
-                </div>
-            `;
-        });
-    }
-
-    document.getElementById("orders").style.display = "block";
-}
-
-function closeOrders(){
-    document.getElementById("orders").style.display = "none";
-}
-    function toggleDark(){
-  document.body.classList.toggle("dark");
-
-  let mode = document.body.classList.contains("dark") ? "dark" : "light";
-  localStorage.setItem("theme", mode);
-}
-
-/* Load saved theme */
-window.onload = () => {
-  if(localStorage.getItem("theme") === "dark"){
-    document.body.classList.add("dark");
-  }
-    function toggleDark(){
-  document.body.classList.toggle("dark");
-  localStorage.setItem(
-    "theme",
-    document.body.classList.contains("dark") ? "dark" : "light"
-  );
-}
-
-window.onload = ()=>{
-  if(localStorage.getItem("theme")==="dark"){
-    document.body.classList.add("dark");
-  }
-function toggleMenu(){
-  document.querySelector(".nav-links").classList.toggle("show");
-  document.querySelector(".hamburger").classList.toggle("active");
-}
-    window.addEventListener("scroll",()=>{
-  document.querySelector(".navbar-pro")
-    .classList.toggle("scrolled",window.scrollY>20);
-});
-    <script>
-  const scrollBtn = document.getElementById("scrollTopBtn");
-
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 300) {
-      scrollBtn.style.display = "block";
-    } else {
-      scrollBtn.style.display = "none";
-    }
-  });
-
-  function scrollToTop(){
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-  }
-</script>
-</script>
-  <div id="checkout" class="checkout">
-    <h2>Checkout</h2>
-
-    <div id="checkout-items"></div>
-
-    <h3>Total: ₹<span id="checkout-total">0</span></h3>
-
-    <input type="text" placeholder="Full Name">
-    <input type="text" placeholder="Mobile Number">
-    <input type="text" placeholder="Delivery Address">
-
-    <button onclick="placeOrder()">Place Order</button>
-    <button class="cancel" onclick="closeCheckout()">Cancel</button>
-</div>
-  <div id="tracking" class="tracking">
+  <div class="nav-right" onclick="openAuth()">👤 Login</div>
+    <div class="nav-right">🛒<span id="cartCount">(0)</span></div>
+    <div class="nav-right"onclick="toggleDark()">🌙</div>
+    <div class="track-box" id="trackBox">
+  <div class="track-card">
     <h2>Order Tracking</h2>
 
-    <p>Order ID: <b>#KFC12345</b></p>
+    <div class="track-steps">
+      <div class="track-step active">
+        <span class="track-icon">📦</span> Order Placed
+      </div>
+      <div class="track-step">
+        <span class="track-icon">👨‍🍳</span> Preparing Food
+      </div>
+      <div class="track-step">
+        <span class="track-icon">🛵</span> Out for Delivery
+      </div>
+      <div class="track-step">
+        <span class="track-icon">🏠</span> Delivered
+      </div>
+    </div>
+<a href="#" onclick="openTrack()">Track Order</a>
+    
+    <button onclick="closeTrack()">Close</button>
+  </div>
+</div>
+</div>
+    
 
-    <div class="steps">
-        <div class="step active">Order Confirmed</div>
-        <div class="step">Preparing Food</div>
-        <div class="step">Out for Delivery</div>
-        <div class="step">Delivered</div>
+<!-- HERO -->
+<section class="hero">
+  <div>
+    <h1>It’s Finger Lickin’ Good</h1>
+    <button>Order Now</button>
+  </div>
+</section>
+
+<!-- DEAL -->
+<section class="deal">
+  <h2>🔥 Limited Time Offer</h2>
+  <p>Flat ₹100 OFF on orders above ₹299</p>
+  <div class="timer">
+    <div>15 Min</div>
+    <div>00 Sec</div>
+  </div>
+</section>
+<section class="section reveal">
+<!-- MENU -->
+<section class="section">
+  <h2>Browse Categories</h2>
+  <div class="menu">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec">
+          <div class="card-body">
+        <h3>Chicken Buckets</h3>
+        <button onclick="addToCart()">Add to Cart</button>
+      </div>
+    </div>
+     
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
+      <div class="card-body">
+        <h3>Burgers</h3>
+        <button>Add to Cart</button>
+      </div>
     </div>
 
-    <button onclick="goHome()">Back to Home</button>
-</div>
-  <div id="payment" class="payment">
-    <h2>Payment</h2>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1606756790138-261d2b21cd75">
+      <div class="card-body">
+        <h3>Main Course</h3>
+        <button>Add to Cart</button>
+      </div>
+    </div>
 
-    <div class="pay-option" onclick="selectPay(this)">UPI</div>
-    <input type="text" placeholder="UPI ID (vivekkhamaru9@okicici)">
-
-    <div class="pay-option" onclick="selectPay(this)">Card</div>
-    <input type="text" placeholder="Card Number">
-    <input type="text" placeholder="MM / YY">
-    <input type="text" placeholder="CVV">
-
-    <div class="pay-option" onclick="selectPay(this)">Cash on Delivery</div>
-
-    <button onclick="payNow()">Pay Now</button>
-    <button class="cancel" onclick="closePayment()">Cancel</button>
-</div>
-  <div id="login" class="auth">
-    <h2>Login</h2>
-    <input type="text" id="login-username" placeholder="Username">
-    <input type="password" id="login-password" placeholder="Password">
-    <button onclick="login()">Login</button>
-    <p>New user? <span onclick="openSignup()">Create account</span></p>
-</div>
-
-<div id="signup" class="auth">
-    <h2>Sign Up</h2>
-    <input type="text" id="signup-username" placeholder="Username">
-    <input type="password" id="signup-password" placeholder="Password">
-    <button onclick="signup()">Sign Up</button>
-    <p>Already have an account? <span onclick="openLogin()">Login</span></p>
-</div>
-  <div id="orders" class="orders">
-    <h2>My Orders</h2>
-    <div id="order-list"></div>
-    <button onclick="closeOrders()">Close</button>
-</div>
-    <!-- 🌊 WAVE DIVIDER -->
-<div class="footer-wave">
-  <svg viewBox="0 0 1440 100">
-    <path d="M0,40 C120,80 240,0 360,20 480,40 600,100 720,80 840,60 960,20 1080,30 1200,40 1320,70 1440,60 L1440,0 L0,0 Z"></path>
-  </svg>
-</div>
-
-<footer class="fh-footer">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e">
+      <div class="card-body">
+        <h3>Beverages</h3>
+        <button>Add to Cart</button>
+      </div>
+    </div>
+  </div>
+</section>
+</section>
+  
+<!-- WHY US -->
+<section class="why-us">
+  <h2>Why Choose FoodieHub?</h2>
+  <div class="why-grid">
+    <div class="why-card">🚀<h3>Fast Delivery</h3><p>Hot & fresh food</p></div>
+    <div class="why-card">🧼<h3>Hygienic</h3><p>Clean & safe kitchens</p></div>
+    <div class="why-card">💳<h3>Easy Payment</h3><p>UPI, Card, COD</p></div>
+    <div class="why-card">⭐<h3>Top Rated</h3><p>Loved by customers</p></div>
+  </div>
+</section>
+    
+<footer class="site-footer">
   <div class="footer-container">
 
     <!-- BRAND -->
     <div class="footer-col">
       <h2 class="footer-logo">Foodie<span>Hub</span></h2>
-      <p>Finger-lickin’ flavors delivered fast. Taste happiness with every bite.</p>
+      <p>Delicious food delivered fast & fresh at your doorstep.</p>
     </div>
 
     <!-- LINKS -->
     <div class="footer-col">
-      <h4>Explore</h4>
+      <h3>Quick Links</h3>
       <ul>
         <li><a href="#">Menu</a></li>
         <li><a href="#">Deals</a></li>
-        <li><a href="#">Buckets</a></li>
-        <li><a href="#">Stores</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Login</a></li>
       </ul>
     </div>
 
     <!-- SUPPORT -->
     <div class="footer-col">
-      <h4>Support</h4>
+      <h3>Support</h3>
       <ul>
-        <li><a href="#">Help Center</a></li>
-        <li><a href="#">Track Order</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-        <li><a href="#">Terms</a></li>
+        <li>📞 +91 98000 03815 </li>
+        <li>✉️ support@foodiehub.com</li>
+        <li>⏰ 10 AM – 11 PM</li>
       </ul>
     </div>
 
     <!-- SOCIAL -->
     <div class="footer-col">
-      <h4>Follow Us</h4>
+      <h3>Follow Us</h3>
       <div class="social-icons">
-        <a><i class="fab fa-facebook-f"></i></a>
-        <a><i class="fab fa-instagram"></i></a>
-        <a><i class="fab fa-x-twitter"></i></a>
-        <a><i class="fab fa-youtube"></i></a>
-      </div>
+  <a href="#"><i class="fab fa-facebook-f"></i></a>
+  <a href="#"><i class="fab fa-instagram"></i></a>
+  <a href="#"><i class="fab fa-twitter"></i></a>
+  <a href="#"><i class="fas fa-globe"></i></a>
+</div>
     </div>
 
   </div>
 
   <div class="footer-bottom">
-    © 2025 FoodieHub • All Rights Reserved
+    © 2026 FoodieHub. All rights reserved.
   </div>
 </footer>
-    <!-- 🔝 SCROLL TO TOP -->
-<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
+    
+<!-- LOGIN MODAL -->
+<div class="auth-modal" id="authModal">
+  <div class="auth-box">
+    <h2 id="authTitle">Login</h2>
+    <input type="text" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button onclick="closeAuth()">Continue</button>
+    <p onclick="toggleAuth()">New here? Sign up</p>
+  </div>
+</div>
+    <script>
+let isLogin = true;
+function openAuth(){
+  document.getElementById("authModal").style.display="flex";
+}
+function closeAuth(){
+  document.getElementById("authModal").style.display="none";
+}
+function toggleAuth(){
+  isLogin=!isLogin;
+  document.getElementById("authTitle").innerText = isLogin?"Login":"Sign Up";
+}
+</script>
+<script>
+let cartCount = 0;
+function addToCart(){
+  cartCount++;
+  document.getElementById("cartCount").innerText = cartCount;
+}
+</script>
+<script>
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+</script>
+<script>
+function openTrack(){
+  document.getElementById("trackBox").style.display="flex";
+}
+function closeTrack(){
+  document.getElementById("trackBox").style.display="none";
+}
+</script>
+    <script>
+const reveals = document.querySelectorAll('.reveal');
+
+window.addEventListener('scroll', () => {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if(top < windowHeight - 100){
+      el.classList.add('active');
+    }
+  });
+});
+</script>
 </body>
 </html>
