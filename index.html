@@ -568,7 +568,7 @@ body.dark .track-step{
       <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec">
           <div class="card-body">
         <h3>Chicken Buckets</h3>
-        <button onclick="addToCart()">Add to Cart</button>
+        <button onclick="addToCart(1, 'Chicken Buckets')">Add to Cart</button>
       </div>
     </div>
      
@@ -576,7 +576,7 @@ body.dark .track-step{
       <img src="https://images.unsplash.com/photo-1550547660-d9450f859349">
       <div class="card-body">
         <h3>Burgers</h3>
-        <button>Add to Cart</button>
+        <button onclick="addToCart(2, 'Burgers')">Add to Cart</button>
       </div>
     </div>
 
@@ -584,15 +584,15 @@ body.dark .track-step{
       <img src="https://images.unsplash.com/photo-1606756790138-261d2b21cd75">
       <div class="card-body">
         <h3>Main Course</h3>
-        <button>Add to Cart</button>
-      </div>
+<button onclick="addToCart(3, 'Main Course')">Add to Cart</button>
+    </div>
     </div>
 
     <div class="card">
       <img src="https://images.unsplash.com/photo-1544145945-f90425340c7e">
       <div class="card-body">
         <h3>Beverages</h3>
-        <button>Add to Cart</button>
+        <button onclick="addToCart(4, 'Beverages')">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -682,34 +682,73 @@ function toggleAuth(){
 }
 </script>
   <script>
-let cartCount = localStorage.getItem("cartCount");
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
 
-if (!cartCount) {
-  cartCount = 0;
-} else {
-  cartCount = parseInt(cartCount);
+// Update cart count badge
+function updateCartCount() {
+  let count = 0;
+  for (let id in cart) {
+    count += cart[id].qty;
+  }
+  document.getElementById("cartCount").innerText = `(${count})`;
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-document.getElementById("cartCount").innerText = cartCount;
-</script>
-<script>
-async function addToCart() {
-  try {
-    const res = await fetch("http://127.0.0.1:5000/api/cart/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ productId: 1, qty: 1 })
-    });
+// Add item (NO BACKEND HERE)
+function addToCart(id, name) {
+  if (cart[id]) {
+    cart[id].qty++;
+  } else {
+    cart[id] = { name: name, qty: 1 };
+  }
+  updateCartCount();
+}
 
-    if (res.ok) {
-      cartCount++;
-      localStorage.setItem("cartCount", cartCount);
-      document.getElementById("cartCount").innerText = cartCount;
-    }
-  } catch {
-    alert("Server error");
+// Increase quantity
+function increaseQty(id) {
+  cart[id].qty++;
+  updateCartCount();
+  renderCart();
+}
+
+// Decrease quantity
+function decreaseQty(id) {
+  cart[id].qty--;
+  if (cart[id].qty <= 0) {
+    delete cart[id];
+  }
+  updateCartCount();
+  renderCart();
+}
+
+// Remove item
+function removeItem(id) {
+  delete cart[id];
+  updateCartCount();
+  renderCart();
+}
+
+// Render cart (optional UI)
+function renderCart() {
+  const box = document.getElementById("cartBox");
+  if (!box) return;
+
+  box.innerHTML = "<h3>Your Cart</h3>";
+  for (let id in cart) {
+    box.innerHTML += `
+      <div>
+        <b>${cart[id].name}</b>
+        <button onclick="decreaseQty(${id})">−</button>
+        ${cart[id].qty}
+        <button onclick="increaseQty(${id})">+</button>
+        <button onclick="removeItem(${id})">❌</button>
+      </div>
+    `;
   }
 }
+
+// Init on page load
+updateCartCount();
 </script>
 <script>
 function toggleDark(){
