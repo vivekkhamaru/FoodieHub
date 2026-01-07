@@ -682,10 +682,24 @@ function toggleAuth(){
 }
 </script>
   <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || {};
+async function addToCart() {
+  try {
+    const res = await fetch("http://127.0.0.1:5000/api/cart/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ productId: 1, qty: 1 })
+    });
 
-// Update cart count badge
-function updateCartCount() {
+    if (res.ok) {
+      cartCount++;
+      localStorage.setItem("cartCount", cartCount);
+      document.getElementById("cartCount").innerText = cartCount;
+    }
+  } catch {
+    alert("Server error");
+  }
+}
+  function updateCartCount() {
   let count = 0;
   for (let id in cart) {
     count += cart[id].qty;
@@ -746,9 +760,6 @@ function renderCart() {
     `;
   }
 }
-
-// Init on page load
-updateCartCount();
 </script>
 <script>
 function toggleDark(){
@@ -806,6 +817,7 @@ async function loginUser() {
     alert("Server not reachable");
   }
 }
+  
 </script>
   <script>
 async function loadMenu() {
