@@ -644,9 +644,9 @@ body.dark .track-step{
 <div class="auth-modal" id="authModal">
   <div class="auth-box">
     <h2 id="authTitle">Login</h2>
-    <input type="text" placeholder="Email">
-    <input type="password" placeholder="Password">
-    <button onclick="closeAuth()">Continue</button>
+    <input type="text" id="email" placeholder="Email">
+    <input type="password" id="password"placeholder="Password">
+    <button onclick="loginUser()">Continue</button>
     <p onclick="toggleAuth()">New here? Sign up</p>
   </div>
 </div>
@@ -663,11 +663,34 @@ function toggleAuth(){
   document.getElementById("authTitle").innerText = isLogin?"Login":"Sign Up";
 }
 </script>
+  <script>
+let cartCount = localStorage.getItem("cartCount");
+
+if (!cartCount) {
+  cartCount = 0;
+} else {
+  cartCount = parseInt(cartCount);
+}
+
+document.getElementById("cartCount").innerText = cartCount;
+</script>
 <script>
-let cartCount = 0;
-function addToCart(){
-  cartCount++;
-  document.getElementById("cartCount").innerText = cartCount;
+async function addToCart() {
+  try {
+    const res = await fetch("http://127.0.0.1:5000/api/cart/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ productId: 1, qty: 1 })
+    });
+
+    if (res.ok) {
+      cartCount++;
+      localStorage.setItem("cartCount", cartCount);
+      document.getElementById("cartCount").innerText = cartCount;
+    }
+  } catch {
+    alert("Server error");
+  }
 }
 </script>
 <script>
@@ -696,6 +719,59 @@ window.addEventListener('scroll', () => {
     }
   });
 });
+</script>
+  <script>
+async function loginUser() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password
+      })
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      alert("Login successful");
+      closeAuth();
+    } else {
+      alert(data.message || "Login failed");
+    }
+  } catch (error) {
+    alert("Server not reachable");
+  }
+}
+</script>
+  <script>
+async function loadMenu() {
+  const res = await fetch("http://localhost:5000/api/menu");
+  const items = await res.json();
+
+  const menuDiv = document.querySelector(".menu");
+  menuDiv.innerHTML = "";
+
+  items.forEach(item => {
+    menuDiv.innerHTML += `
+      <div class="card">
+        <img src="${item.image}">
+        <div class="card-body">
+          <h3>${item.name}</h3>
+          <button onclick="addToCart()">Add to Cart</button>
+        </div>
+      </div>
+    `;
+  });
+}
+
+loadMenu();
 </script>
 </body>
 </html>
