@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>LogIn Page</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+/* ---------- GLOBAL ---------- */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(135deg, #ff0101, #fe730190);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s ease-in-out;
+}
+
+/* DARK MODE BACKGROUND */
+body.dark {
+  background: linear-gradient(135deg, #1a1a1a, #2b2b2b);
+}
+
+/* ---------- CONTAINER ---------- */
+.container {
+  width: 380px;
+}
+
+/* ---------- FORM BOX ---------- */
+.form-box {
+  background: #fff8e6;
+  padding: 35px;
+  border-radius: 22px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: 0.4s;
+}
+
+/* DARK MODE FORM */
+body.dark .form-box {
+  background: #2a2a2a;
+  box-shadow: 0 10px 25px rgba(255, 140, 0, 0.25);
+}
+
+/* Decorative food circles */
+.form-box::before,
+.form-box::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.25;
+}
+
+.form-box::before {
+  width: 180px;
+  height: 180px;
+  background: #ff9900;
+  top: -60px;
+  right: -60px;
+}
+
+.form-box::after {
+  width: 140px;
+  height: 140px;
+  background: #ff4500;
+  bottom: -40px;
+  left: -40px;
+}
+
+/* DARK MODE DECOR */
+body.dark .form-box::before {
+  background: #ff7b00;
+  opacity: 0.15;
+}
+
+body.dark .form-box::after {
+  background: #ff3c00;
+  opacity: 0.15;
+}
+
+/* ---------- TITLE ---------- */
+#form-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ff6f00;
+  margin-bottom: 20px;
+  transition: 0.3s;
+}
+
+body.dark #form-title {
+  color: #ffa64d;
+}
+
+/* ---------- INPUTS ---------- */
+.form-box input {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border-radius: 12px;
+  border: 2px solid #ffd28f;
+  background: #fff;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.form-box input:focus {
+  border-color: #ff6f00;
+  box-shadow: 0 0 8px rgba(255, 111, 0, 0.4);
+  outline: none;
+}
+
+/* DARK MODE INPUTS */
+body.dark .form-box input {
+  background: #3a3a3a;
+  border-color: #ff9d4d;
+  color: white;
+}
+
+body.dark .form-box input:focus {
+  border-color: #ffa64d;
+  box-shadow: 0 0 8px rgba(255, 166, 77, 0.4);
+}
+
+/* ---------- BUTTON ---------- */
+button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff6f00, #ff9f1c);
+  color: white;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(255, 111, 0, 0.4);
+}
+
+/* DARK MODE BUTTON */
+body.dark button {
+  background: linear-gradient(135deg, #ff8c1a, #ffb347);
+  box-shadow: 0 8px 18px rgba(255, 166, 77, 0.25);
+}
+
+/* ---------- TOGGLE TEXT ---------- */
+.toggle-text {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #444;
+  transition: 0.3s;
+}
+
+.toggle-text a {
+  color: #ff6f00;
+  cursor: pointer;
+  font-weight: 700;
+  margin-left: 5px;
+  transition: 0.3s;
+}
+
+.toggle-text a:hover {
+  color: #d45500;
+}
+
+/* DARK MODE TEXT */
+body.dark .toggle-text {
+  color: #ddd;
+}
+
+body.dark .toggle-text a {
+  color: #ffa64d;
+}
+
+/* ---------- FOOD LOGO ---------- */
+.food-logo {
+  width: 90px;
+  margin-bottom: 10px;
+  animation: float 3s infinite ease-in-out;
+}
+
+/* Floating animation */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0px); }
+}
+
+/* DARK MODE LOGO */
+body.dark .food-logo {
+  filter: brightness(0.9);
+}
+
+/* ---------- DARK MODE TOGGLE BUTTON ---------- */
+.dark-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff3d4;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.dark-toggle:hover {
+  background: #ffe2a8;
+}
+
+/* DARK MODE TOGGLE */
+body.dark .dark-toggle {
+  background: #3a3a3a;
+  color: #ffa64d;
+}
+
+
+</style>
+</head>
+
+
+<body>
+<div class="dark-toggle" onclick="toggleDark()">Dark Mode</div>
+
+<div class="container">
+
+  <div class="form-box">
+
+    <h2 id="form-title">Login</h2>
+
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+
+    <button id="submit-btn" onclick="handleSubmit()">Login</button>
+
+    <p class="toggle-text">
+      <span id="toggle-msg">Don't have an account?</span>
+      <a onclick="toggleForm()" id="toggle-link">Sign Up</a>
+    </p>
+  </div>
+</div>
+
+<script src="script.js"></script>
+<script>
+    function toggleDark() {
+  document.body.classList.toggle("dark");
+}
+
+    let isLogin = true;
+
+function toggleForm() {
+  isLogin = !isLogin;
+
+  document.getElementById("form-title").innerText = isLogin ? "Login" : "Sign Up";
+  document.getElementById("submit-btn").innerText = isLogin ? "Login" : "Sign Up";
+  document.getElementById("toggle-msg").innerText = isLogin ? "Don't have an account?" : "Already have an account?";
+  document.getElementById("toggle-link").innerText = isLogin ? "Sign Up" : "Login";
+}
+
+async function handleSubmit() {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+
+  const endpoint = isLogin ? "/api/login" : "/api/signup";
+
+  const response = await fetch("http://localhost:5000" + endpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
+
+  const data = await response.json();
+  alert(data.message);
+}
+</script>
+</body>
+</html>

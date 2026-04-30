@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Track Order</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(135deg, #ff6f00, #ff9f1c);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.track-container {
+  width: 450px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  text-align: center;
+  color: white;
+  animation: fadeIn 0.8s ease;
+}
+
+.step {
+  padding: 15px;
+  margin: 12px 0;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 18px;
+  transition: 0.4s;
+}
+
+.active {
+  background: rgba(0, 255, 136, 0.4);
+  box-shadow: 0 0 15px #00ff88;
+}
+
+.home-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #00ff88, #00cc66);
+  border: none;
+  border-radius: 12px;
+  color: black;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 20px;
+  box-shadow: 0 0 15px rgba(0, 255, 136, 0.6);
+  transition: 0.3s;
+}
+
+.home-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(0, 255, 136, 1);
+}
+a{
+    color: black;
+    text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+    <div class="track-container">
+  <h2>Track Your Order</h2>
+  <h3>Order ID: <span id="trackOrderId"></span></h3>
+
+  <div class="step" id="step1">🟢 Order Received</div>
+  <div class="step" id="step2">🟡 Preparing Food</div>
+  <div class="step" id="step3">🟠 Out for Delivery</div>
+  <div class="step" id="step4">🟣 Delivered</div>
+
+  <button class="home-btn"><a href="index.html" onclick="goHome()">Back to Home</a></button>
+</div>
+
+<script src="track.js"></script>
+<script>
+   const orderId = localStorage.getItem("orderId");
+document.getElementById("trackOrderId").innerText = orderId;
+
+async function loadStatus() {
+  const res = await fetch("http://localhost:5000/api/order-status", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ orderId })
+  });
+
+  const data = await res.json();
+  updateSteps(data.status);
+}
+
+function updateSteps(status) {
+  document.querySelectorAll(".step").forEach(s => s.classList.remove("active"));
+
+  if (status === "received") document.getElementById("step1").classList.add("active");
+  if (status === "preparing") document.getElementById("step2").classList.add("active");
+  if (status === "out_for_delivery") document.getElementById("step3").classList.add("active");
+  if (status === "delivered") document.getElementById("step4").classList.add("active");
+}
+
+// Refresh every 3 seconds
+setInterval(loadStatus, 3000);
+
+loadStatus();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+body {
+  margin: 0;
+  font-family: Poppins, sans-serif;
+  background: linear-gradient(135deg, #ff6f00, #ff9f1c);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkout-container {
+  width: 450px;
+  padding: 30px;
+  border-radius: 20px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  animation: fadeIn 0.8s ease;
+  color: white;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+  text-align: center;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+.section h3 {
+  margin-bottom: 10px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  font-size: 15px;
+  backdrop-filter: blur(5px);
+}
+
+#orderItems {
+  margin-bottom: 10px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, #ff3d00, #ff9100);
+  border: none;
+  border-radius: 12px;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top: 10px;
+  box-shadow: 0 0 15px rgba(255, 111, 0, 0.6);
+  transition: 0.3s;
+}
+
+.place-order-btn:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(255, 111, 0, 1);
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+
+  </style>
+</head>
+<body>
+<div class="checkout-container">
+  <h2>Checkout</h2>
+
+  <div class="section">
+    <h3>Delivery Details</h3>
+    <input type="text" id="name" placeholder="Full Name">
+    <input type="text" id="address" placeholder="Delivery Address">
+    <input type="text" id="phone" placeholder="Phone Number">
+  </div>
+
+  <div class="section">
+    <h3>Payment Method</h3>
+    <select id="payment">
+      <option value="COD">Cash on Delivery</option>
+      <option value="UPI">UPI</option>
+      <option value="Card">Credit/Debit Card</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h3>Order Summary</h3>
+    <div id="orderItems"></div>
+    <h3>Total: ₹<span id="orderTotal">0</span></h3>
+  </div>
+
+  <button class="place-order-btn"><a onclick="placeOrder()">Place Order</a></button>
+</div>
+
+<script src="checkout.js"></script>
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+function loadOrderSummary() {
+  const box = document.getElementById("orderItems");
+  const totalBox = document.getElementById("orderTotal");
+
+  let total = 0;
+  box.innerHTML = "";
+
+  Object.entries(cart).forEach(([id, item]) => {
+    total += item.price * item.qty;
+
+    box.innerHTML += `
+      <div class="order-item">
+        <span>${item.name} × ${item.qty}</span>
+        <span>₹${item.price * item.qty}</span>
+      </div>
+    `;
+  });
+
+  totalBox.innerText = total;
+}
+
+loadOrderSummary();
+
+async function placeOrder() {
+  const name = document.getElementById("name").value;
+  const address = document.getElementById("address").value;
+  const phone = document.getElementById("phone").value;
+  const payment = document.getElementById("payment").value;
+
+  if (!name || !address || !phone) {
+    alert("Please fill all details");
+    return;
+  }
+
+  const orderData = {
+    name,
+    address,
+    phone,
+    payment,
+    cart,
+    total: document.getElementById("orderTotal").innerText
+  };
+
+  console.log("Order Placed:", orderData);
+
+  alert("Order Placed Successfully!");
+
+  localStorage.removeItem("cart");
+  window.location.href = "home.html";
+}
+function placeOrder() {
+  const name = document.getElementById("name").value;
+  const address = document.getElementById("address").value;
+  const phone = document.getElementById("phone").value;
+  const total = parseInt(document.getElementById("orderTotal").innerText);
+
+  // Check empty fields
+  if (!name || !address || !phone) {
+    alert("Please fill all delivery details before placing the order.");
+    return;
+  }
+
+  // Check total
+  if (total === 0) {
+    alert("Your cart is empty. Add items before placing an order.");
+    return;
+  }
+
+  // Confirm
+  if (!confirm("Are you sure you want to place this order?")) {
+    return;
+  }
+
+  // If everything is OK → go to success page
+  window.location.href = "success.html";
+}
+
+</script>
+</body>
+</html>
